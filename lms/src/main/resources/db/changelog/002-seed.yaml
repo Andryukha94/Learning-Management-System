@@ -1,0 +1,155 @@
+databaseChangeLog:
+
+  - changeSet:
+      id: 007-insert-teachers
+      author: lms
+      changes:
+        - insert:
+            tableName: teachers
+            columns:
+              - column: { name: first_name, value: Ivan }
+              - column: { name: last_name, value: Petrov }
+
+        - insert:
+            tableName: teachers
+            columns:
+              - column: { name: first_name, value: Anna }
+              - column: { name: last_name, value: Smirnova }
+
+        - insert:
+            tableName: teachers
+            columns:
+              - column: { name: first_name, value: Sergey }
+              - column: { name: last_name, value: Ivanov }
+
+  - changeSet:
+      id: 008-insert-groups
+      author: lms
+      changes:
+        - insert:
+            tableName: groups
+            columns:
+              - column: { name: name, value: JAVA-01 }
+
+        - insert:
+            tableName: groups
+            columns:
+              - column: { name: name, value: JAVA-02 }
+
+  - changeSet:
+      id: 009-insert-courses
+      author: lms
+      changes:
+        - insert:
+            tableName: courses
+            columns:
+              - column: { name: name, value: "Java Core" }
+              - column: { name: description, value: "Base Java, OOP, Collections" }
+              - column: { name: teacher_id, valueNumeric: 1 }
+
+        - insert:
+            tableName: courses
+            columns:
+              - column: { name: name, value: "Spring Boot" }
+              - column: { name: description, value: "REST, JPA, Validation" }
+              - column: { name: teacher_id, valueNumeric: 2 }
+
+  - changeSet:
+      id: 010-insert-group-courses
+      author: lms
+      changes:
+        - insert:
+            tableName: group_courses
+            columns:
+              - column: { name: group_id, valueNumeric: 1 }
+              - column: { name: course_id, valueNumeric: 1 }
+
+        - insert:
+            tableName: group_courses
+            columns:
+              - column: { name: group_id, valueNumeric: 1 }
+              - column: { name: course_id, valueNumeric: 2 }
+
+        - insert:
+            tableName: group_courses
+            columns:
+              - column: { name: group_id, valueNumeric: 2 }
+              - column: { name: course_id, valueNumeric: 1 }
+
+  - changeSet:
+      id: 011-insert-students
+      author: lms
+      changes:
+        - insert:
+            tableName: students
+            columns:
+              - column: { name: first_name, value: Alex }
+              - column: { name: last_name, value: Sidorov }
+              - column: { name: group_id, valueNumeric: 1 }
+
+        - insert:
+            tableName: students
+            columns:
+              - column: { name: first_name, value: Maria }
+              - column: { name: last_name, value: Kuznetsova }
+              - column: { name: group_id, valueNumeric: 1 }
+
+        - insert:
+            tableName: students
+            columns:
+              - column: { name: first_name, value: Dmitry }
+              - column: { name: last_name, value: Volkov }
+              - column: { name: group_id, valueNumeric: 1 }
+
+        - insert:
+            tableName: students
+            columns:
+              - column: { name: first_name, value: Olga }
+              - column: { name: last_name, value: Popova }
+              - column: { name: group_id, valueNumeric: 2 }
+
+        - insert:
+            tableName: students
+            columns:
+              - column: { name: first_name, value: Pavel }
+              - column: { name: last_name, value: Morozov }
+              - column: { name: group_id, valueNumeric: 2 }
+
+        - insert:
+            tableName: students
+            columns:
+              - column: { name: first_name, value: Elena }
+              - column: { name: last_name, value: Fedorova }
+              - column: { name: group_id, valueNumeric: 2 }
+
+        - insert:
+            tableName: students
+            columns:
+              - column: { name: first_name, value: Nikita }
+              - column: { name: last_name, value: Orlov }
+              - column: { name: group_id, valueNumeric: 2 }
+
+  - changeSet:
+      id: 012-insert-schedule
+      author: lms
+      changes:
+        - insert:
+            tableName: schedule
+            columns:
+              - column: { name: group_id, valueNumeric: 1 }
+              - column: { name: course_id, valueNumeric: 1 }
+              - column: { name: lesson_datetime, value: '2025-12-20T18:00:00' }
+
+        - insert:
+            tableName: schedule
+            columns:
+              - column: { name: group_id, valueNumeric: 1 }
+              - column: { name: course_id, valueNumeric: 2 }
+              - column: { name: lesson_datetime, value: '2025-12-22T18:00:00' }
+
+        - insert:
+            tableName: schedule
+            columns:
+              - column: { name: group_id, valueNumeric: 2 }
+              - column: { name: course_id, valueNumeric: 1 }
+              - column: { name: lesson_datetime, value: '2025-12-21T16:00:00' }
