@@ -12,10 +12,10 @@ import com.mycompany.lms.model.Group;
 import com.mycompany.lms.model.Schedule;
 import com.mycompany.lms.model.relation.GroupCourseId;
 import lombok.RequiredArgsConstructor;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
-
-import java.util.List;
 
 @Service
 @RequiredArgsConstructor
@@ -27,14 +27,14 @@ public class ScheduleService {
     private final GroupCourseRepository groupCourseRepository;
     private final ScheduleMapper scheduleMapper;
 
-    public List<ScheduleDto> getGroupSchedule(Long groupId) {
-        return scheduleRepository.findByGroupIdOrderByLessonDateTimeAsc(groupId)
-                .stream().map(scheduleMapper::toDto).toList();
+    public Page<ScheduleDto> getGroupSchedule(Long groupId, Pageable pageable) {
+        return scheduleRepository.findByGroupIdOrderByLessonDateTimeAsc(groupId, pageable)
+                .map(scheduleMapper::toDto);
     }
 
-    public List<ScheduleDto> getTeacherSchedule(Long teacherId) {
-        return scheduleRepository.findByCourseTeacherIdOrderByLessonDateTimeAsc(teacherId)
-                .stream().map(scheduleMapper::toDto).toList();
+    public Page<ScheduleDto> getTeacherSchedule(Long teacherId, Pageable pageable) {
+        return scheduleRepository.findByCourseTeacherIdOrderByLessonDateTimeAsc(teacherId, pageable)
+                .map(scheduleMapper::toDto);
     }
 
     public ScheduleDto getById(Long id) {

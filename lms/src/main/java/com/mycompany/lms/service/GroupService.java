@@ -6,10 +6,10 @@ import com.mycompany.lms.exception.NotFoundException;
 import com.mycompany.lms.mapper.GroupMapper;
 import com.mycompany.lms.model.Group;
 import lombok.RequiredArgsConstructor;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
-
-import java.util.List;
 
 @Service
 @RequiredArgsConstructor
@@ -18,8 +18,8 @@ public class GroupService {
     private final GroupRepository groupRepository;
     private final GroupMapper groupMapper;
 
-    public List<GroupDto> getAll() {
-        return groupRepository.findAll().stream().map(groupMapper::toDto).toList();
+    public Page<GroupDto> getAll(Pageable pageable) {
+        return groupRepository.findAll(pageable).map(groupMapper::toDto);
     }
 
     public GroupDto getById(Long id) {

@@ -4,9 +4,10 @@ import com.mycompany.lms.dto.GroupDto;
 import com.mycompany.lms.service.GroupService;
 import jakarta.validation.Valid;
 import lombok.RequiredArgsConstructor;
-import org.springframework.web.bind.annotation.*;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
 
-import java.util.List;
+import org.springframework.web.bind.annotation.*;
 
 @RestController
 @RequestMapping("/groups")
@@ -16,8 +17,8 @@ public class GroupController {
     private final GroupService groupService;
 
     @GetMapping
-    public List<GroupDto> getAll() {
-        return groupService.getAll();
+    public Page<GroupDto> getAll(Pageable pageable) {
+        return groupService.getAll(pageable);
     }
 
     @GetMapping("/{id}")
@@ -40,7 +41,3 @@ public class GroupController {
         groupService.delete(id);
     }
 }
-
-
-
-

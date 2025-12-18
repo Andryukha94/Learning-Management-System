@@ -20,4 +20,3 @@ public class TeacherDto {
     @Size(min = 2, max = 50)
     private String lastName;
 }
-

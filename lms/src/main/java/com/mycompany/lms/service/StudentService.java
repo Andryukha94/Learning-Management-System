@@ -8,10 +8,10 @@ import com.mycompany.lms.mapper.StudentMapper;
 import com.mycompany.lms.model.Group;
 import com.mycompany.lms.model.Student;
 import lombok.RequiredArgsConstructor;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
-
-import java.util.List;
 
 @Service
 @RequiredArgsConstructor
@@ -21,8 +21,8 @@ public class StudentService {
     private final GroupRepository groupRepository;
     private final StudentMapper studentMapper;
 
-    public List<StudentDto> getAll() {
-        return studentRepository.findAll().stream().map(studentMapper::toDto).toList();
+    public Page<StudentDto> getAll(Pageable pageable) {
+        return studentRepository.findAll(pageable).map(studentMapper::toDto);
     }
 
     public StudentDto getById(Long id) {

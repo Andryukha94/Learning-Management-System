@@ -24,4 +24,3 @@ public class StudentDto {
     @NotNull
     private Long groupId;
 }
-

@@ -6,10 +6,10 @@ import com.mycompany.lms.exception.NotFoundException;
 import com.mycompany.lms.mapper.TeacherMapper;
 import com.mycompany.lms.model.Teacher;
 import lombok.RequiredArgsConstructor;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
-
-import java.util.List;
 
 @Service
 @RequiredArgsConstructor
@@ -18,8 +18,8 @@ public class TeacherService {
     private final TeacherRepository teacherRepository;
     private final TeacherMapper teacherMapper;
 
-    public List<TeacherDto> getAll() {
-        return teacherRepository.findAll().stream().map(teacherMapper::toDto).toList();
+    public Page<TeacherDto> getAll(Pageable pageable) {
+        return teacherRepository.findAll(pageable).map(teacherMapper::toDto);
     }
 
     public TeacherDto getById(Long id) {

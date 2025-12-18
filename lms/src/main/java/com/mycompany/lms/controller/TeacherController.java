@@ -4,9 +4,10 @@ import com.mycompany.lms.dto.TeacherDto;
 import com.mycompany.lms.service.TeacherService;
 import jakarta.validation.Valid;
 import lombok.RequiredArgsConstructor;
-import org.springframework.web.bind.annotation.*;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
 
-import java.util.List;
+import org.springframework.web.bind.annotation.*;
 
 @RestController
 @RequestMapping("/teachers")
@@ -16,8 +17,8 @@ public class TeacherController {
     private final TeacherService teacherService;
 
     @GetMapping
-    public List<TeacherDto> getAll() {
-        return teacherService.getAll();
+    public Page<TeacherDto> getAll(Pageable pageable) {
+        return teacherService.getAll(pageable);
     }
 
     @GetMapping("/{id}")
@@ -40,4 +41,3 @@ public class TeacherController {
         teacherService.delete(id);
     }
 }
-

@@ -23,5 +23,3 @@ public class CourseDto {
     @NotNull
     private Long teacherId;
 }
-
-

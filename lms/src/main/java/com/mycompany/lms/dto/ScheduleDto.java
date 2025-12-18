@@ -22,7 +22,3 @@ public class ScheduleDto {
     @NotNull
     private LocalDateTime lessonDateTime;
 }
-
-
-
-

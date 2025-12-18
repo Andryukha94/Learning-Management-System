@@ -4,9 +4,9 @@ import com.mycompany.lms.dto.ScheduleDto;
 import com.mycompany.lms.service.ScheduleService;
 import jakarta.validation.Valid;
 import lombok.RequiredArgsConstructor;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
 import org.springframework.web.bind.annotation.*;
-
-import java.util.List;
 
 @RestController
 @RequestMapping("/schedule")
@@ -18,6 +18,16 @@ public class ScheduleController {
     @GetMapping("/{id}")
     public ScheduleDto getById(@PathVariable Long id) {
         return scheduleService.getById(id);
+    }
+
+    @GetMapping("/group/{groupId}")
+    public Page<ScheduleDto> groupSchedule(@PathVariable Long groupId, Pageable pageable) {
+        return scheduleService.getGroupSchedule(groupId, pageable);
+    }
+
+    @GetMapping("/teacher/{teacherId}")
+    public Page<ScheduleDto> teacherSchedule(@PathVariable Long teacherId, Pageable pageable) {
+        return scheduleService.getTeacherSchedule(teacherId, pageable);
     }
 
     @PostMapping
@@ -34,15 +44,4 @@ public class ScheduleController {
     public void delete(@PathVariable Long id) {
         scheduleService.delete(id);
     }
-
-    @GetMapping("/group/{groupId}")
-    public List<ScheduleDto> groupSchedule(@PathVariable Long groupId) {
-        return scheduleService.getGroupSchedule(groupId);
-    }
-
-    @GetMapping("/teacher/{teacherId}")
-    public List<ScheduleDto> teacherSchedule(@PathVariable Long teacherId) {
-        return scheduleService.getTeacherSchedule(teacherId);
-    }
 }
-

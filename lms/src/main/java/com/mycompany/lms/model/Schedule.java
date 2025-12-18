@@ -28,4 +28,3 @@ public class Schedule {
     @Column(name = "lesson_datetime", nullable = false)
     private LocalDateTime lessonDateTime;
 }
-
