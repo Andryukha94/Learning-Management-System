@@ -10,7 +10,7 @@ import org.springframework.data.domain.Pageable;
 import org.springframework.web.bind.annotation.*;
 
 @RestController
-@RequestMapping("/teachers")
+@RequestMapping("/api/v1/teachers")
 @RequiredArgsConstructor
 public class TeacherController {
 

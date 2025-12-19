@@ -9,7 +9,7 @@ import org.springframework.data.domain.Pageable;
 import org.springframework.web.bind.annotation.*;
 
 @RestController
-@RequestMapping("/schedule")
+@RequestMapping("/api/v1/schedule")
 @RequiredArgsConstructor
 public class ScheduleController {
 

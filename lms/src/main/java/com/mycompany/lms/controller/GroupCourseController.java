@@ -7,7 +7,7 @@ import lombok.RequiredArgsConstructor;
 import org.springframework.web.bind.annotation.*;
 
 @RestController
-@RequestMapping("/group-courses")
+@RequestMapping("/api/v1/group-courses")
 @RequiredArgsConstructor
 public class GroupCourseController {
 

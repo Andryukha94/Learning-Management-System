@@ -10,7 +10,7 @@ import org.springframework.data.domain.Pageable;
 import org.springframework.web.bind.annotation.*;
 
 @RestController
-@RequestMapping("/groups")
+@RequestMapping("/api/v1/groups")
 @RequiredArgsConstructor
 public class GroupController {
 
