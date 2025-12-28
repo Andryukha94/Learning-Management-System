@@ -1,0 +1,33 @@
+services:
+  db:
+    image: postgres:15-alpine
+    container_name: lms-db
+    environment:
+      POSTGRES_DB: lms_db
+      POSTGRES_USER: privateclub
+      POSTGRES_PASSWORD: 12345
+    ports:
+      - "5432:5432"
+    volumes:
+      - lms_pg_data:/var/lib/postgresql/data
+    healthcheck:
+      test: ["CMD-SHELL", "pg_isready -U privateclub -d lms_db"]
+      interval: 5s
+      timeout: 3s
+      retries: 20
+
+  app:
+    build: .
+    container_name: lms-app
+    depends_on:
+      db:
+        condition: service_healthy
+    ports:
+      - "8080:8080"
+    environment:
+      SPRING_DATASOURCE_URL: jdbc:postgresql://db:5432/lms_db
+      SPRING_DATASOURCE_USERNAME: privateclub
+      SPRING_DATASOURCE_PASSWORD: 12345
+
+volumes:
+  lms_pg_data:
