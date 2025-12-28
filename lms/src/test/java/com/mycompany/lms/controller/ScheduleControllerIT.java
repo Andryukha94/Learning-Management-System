@@ -19,14 +19,20 @@ import static org.assertj.core.api.Assertions.assertThat;
 
 class ScheduleControllerIT extends AbstractIT {
 
-    @Autowired TestRestTemplate restTemplate;
-
-    @Autowired ScheduleRepository scheduleRepository;
-    @Autowired StudentRepository studentRepository;
-    @Autowired GroupCourseRepository groupCourseRepository;
-    @Autowired CourseRepository courseRepository;
-    @Autowired GroupRepository groupRepository;
-    @Autowired TeacherRepository teacherRepository;
+    @Autowired
+    private TestRestTemplate restTemplate;
+    @Autowired
+    private ScheduleRepository scheduleRepository;
+    @Autowired
+    private StudentRepository studentRepository;
+    @Autowired
+    private GroupCourseRepository groupCourseRepository;
+    @Autowired
+    private CourseRepository courseRepository;
+    @Autowired
+    private GroupRepository groupRepository;
+    @Autowired
+    private TeacherRepository teacherRepository;
 
     private Long groupId;
     private Long courseId;
